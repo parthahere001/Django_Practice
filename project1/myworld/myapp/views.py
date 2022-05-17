@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from .models import Myapp
+
 def index(request):
-   template = loader.get_template('myfirst.html')
-   return HttpResponse(template.render())
+   mymembers=Myapp.objects.all().values()
+   output=" "
+   for x in mymembers:
+           output+=x["firstname"]
+   return HttpResponse(output)
 
 # Create your views here.
