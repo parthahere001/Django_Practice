@@ -20,5 +20,8 @@ def addrecord(request):
    member=Myapp(firstname=x,lastname=y)
    member.save()
    return HttpResponseRedirect(reverse('index'))
-
+def delete(request, id):
+  member = Myapp.objects.get(id=id)
+  member.delete()
+  return HttpResponseRedirect(reverse('index'))
 # Create your views here.
